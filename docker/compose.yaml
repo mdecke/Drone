@@ -1,0 +1,25 @@
+# From the repo root:
+#   docker compose -f docker/compose.yaml build
+#   docker compose -f docker/compose.yaml run --rm dev
+# If your host UID/GID is not 1000:  export HOST_UID=$(id -u) HOST_GID=$(id -g)
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: dev
+      args:
+        USER_UID: ${HOST_UID:-1000}
+        USER_GID: ${HOST_GID:-1000}
+    image: drone-dev:jazzy
+    network_mode: host   # DDS discovery with the host / other machines
+    ipc: host            # DDS shared-memory transport
+    environment:
+      - DISPLAY          # passed through from your shell, for Gazebo / RViz
+    volumes:
+      - ..:/ws
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    working_dir: /ws
+    stdin_open: true
+    tty: true
+    command: bash
