@@ -5,7 +5,7 @@ ARG NVIDIA_GPU=false
 ARG ROLE=developer
 
 #First build on top of Ubuntu - get the "computer ready and then build ROS2 img"
-FROM BASE_IMAGE
+FROM ${BASE_IMAGE} as base
 # setup timezone
 RUN echo 'Etc/UTC' > /etc/timezone && \
     ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
