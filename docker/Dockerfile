@@ -1,4 +1,7 @@
-#Define runtime args. these are populated in the docker compose.yaml
+# syntax=docker/dockerfile:1
+ARG DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 ARG BASE_IMAGE=ubuntu:24.04
 ARG ROS_DISTRO=jazzy
 ARG NVIDIA_GPU=false
