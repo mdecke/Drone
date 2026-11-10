@@ -2,10 +2,9 @@
 ARG DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+#Define runtime args.
 ARG BASE_IMAGE=ubuntu:24.04
 ARG ROS_DISTRO=jazzy
-ARG NVIDIA_GPU=false
-ARG ROLE=developer
 
 #First build on top of Ubuntu - get the "computer ready and then build ROS2 img"
 FROM ${BASE_IMAGE} as base
