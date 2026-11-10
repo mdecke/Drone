@@ -16,4 +16,26 @@ RUN echo 'Etc/UTC' > /etc/timezone && \
     rm -rf /var/lib/apt/lists/*
 
 #install general terminal (CI/CD) tools
-RUN sudo
+RUN echo 'CI/CD pckgs' && \
+    apt-get update && \
+    apt-get install -q -y --no-install-recommends && \
+    build-essential && \
+    cmake && \
+    git && \
+    git-lfs && \
+    openssh-client && \
+    curl && \
+    ca-certificates && \
+    gnupg && \
+    locales && \
+    python3-pip && \
+    python3-venv && \
+    tmux && \
+    htop && \
+    vim && \
+    less && \
+    iproute2 && \
+    iputils-ping && \
+    bash-completion && \
+    sudo && \
+    rm -rf /var/lib/apt/lists/*
