@@ -64,3 +64,13 @@ RUN apt-get update \
 
 RUN rosdep init
 
+###################
+# DEVELOPMENT IMAGE
+###################
+
+FROM base AS dev
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN echo 'DEVELOPMENT IMAGE' \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
