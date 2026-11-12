@@ -20,9 +20,10 @@ RUN echo 'CI/CD pckgs' \
     openssh-client \
     curl \
     ca-certificates \
-    gnupg \
+    gnupg2 \
     python3-pip \
     python3-venv \
+    python3-argcomplete \
     tmux \
     htop \
     vim \
@@ -56,5 +57,10 @@ RUN f=/etc/apt/sources.list.d/ubuntu.sources \
 #Install bare bones ROS2 and add pckgs based on role
 RUN apt-get update \
  && apt-get full-upgrade -y \
- && apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-ros-base ros-dev-tools \
+ && apt-get install -y --no-install-recommends \ 
+    ros-dev-tools \
+    ros-${ROS_DISTRO}-ros-base \
  && rm -rf /var/lib/apt/lists/*
+
+RUN rosdep init
+
